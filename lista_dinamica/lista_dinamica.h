@@ -53,4 +53,6 @@ void libera(Lista *p_l);
 /* Exibe o conteudo da lista */
 void exibe(Lista *p_l);
 
+/* Acha o maior valor presente na lista */
+void acha_max(Lista *p_l, int *maximo);
 #endif

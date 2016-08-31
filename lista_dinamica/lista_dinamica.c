@@ -1,5 +1,6 @@
 #include "lista_dinamica.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void inicLista(Lista *p_l){
 		p_l->prox = NULL;
@@ -40,14 +41,67 @@ void insereFim(Lista *p_l, elem_t e){
 
 /* Insere um elemento na lista de maneira ordenada.
  *    Caso a lista nao esteja ordenada, ordena antes da insercao */
-void insereOrdenado(Lista *p_l, elem_t e);
+void insereOrdenado(Lista *p_l, elem_t e){
+	No_lista *aux, *novo_no;
+	
+	novo_no = (No_lista *) malloc(sizeof(No_lista));
+	novo_no->info = e;	
+	if(listaVazia(p_l))
+		insereInicio(p_l, e);
+	else if(ordenada(p_l))
+		ordena(p_l);
+
+	aux = p_l->prox;
+	while(aux != NULL){
+		if(e <= aux->info){
+			novo_no->prox = aux;
+			p_l->prox = novo_no;
+			break;
+		}	
+		p_l = p_l->prox;
+		aux = aux->prox;
+	}
+}
 
 /* Verifica se a lista esta ordenada */
-int ordenada(Lista *p_l);
+int ordenada(Lista *p_l){
+	No_lista *aux;
+	p_l = p_l->prox;
+	aux = p_l->prox;
+	while(aux->prox != NULL){
+		if(p_l->info > aux->info){
+			return 0;
+			break;
+		}
+	}
+	return 1;
+}
 
 /* Ordena a lista */
-void ordena(Lista *p_l);
+void ordena(Lista *p_l){
+	int maximo = 0;
+	Lista *lista_ordenada;
+	inicLista(lista_ordenada);
+	
+	while(!listaVazia(p_l)){
+	// 1- procurando o máximo
+		acha_max(p_l, &maximo);
+	// 2- removendo os elementos e inserindo na lista nova
+		removeValor(p_l, maximo);
+		insereInicio(lista_ordenada, maximo);	
+	}	
+	// 3- p_l passa a ser a lista ordenada
+	// (esse passo é necessário?)
+	p_l = lista_ordenada;	
+}
 
+void acha_max(Lista *p_l, int *maximo){
+	No_lista *aux;
+	while(aux->prox != NULL){
+		if(aux->info > *maximo)
+			*maximo = aux->info;
+	}
+}
 int removeInicio(Lista *p_l, elem_t *p_e){
 	No_lista *aux;
 	
@@ -106,7 +160,9 @@ int removeValor(Lista *p_l, elem_t e){
 }
 
 /* Inverte os elementos de uma lista */
-void inverte(Lista *p_l);
+void inverte(Lista *p_l){
+		
+}
 
 /* Remove todos os numeros da lista */
 void libera(Lista *p_l);
@@ -115,6 +171,6 @@ void libera(Lista *p_l);
 void exibe(Lista *p_l){
 	while(p_l->prox != NULL){
 		printf("%d ", p_l->prox->info);
-		p_l = p_l->prox/
+		p_l = p_l->prox;
 	}
 }
