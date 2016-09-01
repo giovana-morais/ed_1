@@ -48,7 +48,7 @@ void insereOrdenado(Lista *p_l, elem_t e){
 	novo_no->info = e;	
 	if(listaVazia(p_l))
 		insereInicio(p_l, e);
-	else if(ordenada(p_l))
+	else if(!ordenada(p_l))
 		ordena(p_l);
 
 	aux = p_l->prox;
@@ -78,29 +78,39 @@ int ordenada(Lista *p_l){
 
 /* Ordena a lista */
 void ordena(Lista *p_l){
-	int maximo = 0;
-	Lista *lista_ordenada;
-	inicLista(lista_ordenada);
+	int maximo = 0, i;
+	Lista lista_ordenada;
+	inicLista(&lista_ordenada);
 	
-	while(!listaVazia(p_l)){
-		printf("while\n");
+	//while(!listaVazia(p_l)){
+	for(i = 0; i < 2; i++){
+	//	printf("while\n");
 	// 1- procurando o máximo
 		acha_max(p_l, &maximo);
-		printf("maximo\t%d\n", maximo); 
 	// 2- removendo os elementos e inserindo na lista nova
 		removeValor(p_l, maximo);
-		insereInicio(lista_ordenada, maximo);	
+		printf("p_l\t");
+		exibe(p_l);
+		insereInicio(&lista_ordenada, maximo);	
+		printf("\nlista_nova\t");
+		exibe(&lista_ordenada);
+		printf("\n");
 	}	
 	// 3- p_l passa a ser a lista ordenada
 	// (esse passo é necessário?)
-	p_l = lista_ordenada;	
+	*p_l = lista_ordenada;	
+
 }
 
 void acha_max(Lista *p_l, int *maximo){
 	No_lista *aux;
-	while(aux != NULL){
-		if(aux->info > *maximo)
+	aux = p_l->prox;
+	while(aux->prox != NULL){
+		if(aux->info > *maximo){
 			*maximo = aux->info;
+			printf("max = %d\n", *maximo);
+		}
+		aux = aux->prox;
 	}
 }
 int removeInicio(Lista *p_l, elem_t *p_e){
