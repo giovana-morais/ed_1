@@ -66,10 +66,9 @@ void insereOrdenado(Lista *p_l, elem_t e){
 /* Verifica se a lista esta ordenada */
 int ordenada(Lista *p_l){
 	No_lista *aux;
-	p_l = p_l->prox;
 	aux = p_l->prox;
 	while(aux->prox != NULL){
-		if(p_l->info > aux->info){
+		if(aux->info > aux->prox->info){
 			return 0;
 			break;
 		}
@@ -84,8 +83,10 @@ void ordena(Lista *p_l){
 	inicLista(lista_ordenada);
 	
 	while(!listaVazia(p_l)){
+		printf("while\n");
 	// 1- procurando o máximo
 		acha_max(p_l, &maximo);
+		printf("maximo\t%d\n", maximo); 
 	// 2- removendo os elementos e inserindo na lista nova
 		removeValor(p_l, maximo);
 		insereInicio(lista_ordenada, maximo);	
@@ -97,7 +98,7 @@ void ordena(Lista *p_l){
 
 void acha_max(Lista *p_l, int *maximo){
 	No_lista *aux;
-	while(aux->prox != NULL){
+	while(aux != NULL){
 		if(aux->info > *maximo)
 			*maximo = aux->info;
 	}
@@ -169,7 +170,7 @@ void inverte(Lista *p_l){
 	inicLista(nova_lista);
 
 	aux = p_l->prox;
-	while(aux->prox != NULL){
+	while(aux != NULL){
 		removeFim(p_l, &elemento);
 		insereInicio(nova_lista, elemento);
 		aux = aux->prox;
