@@ -161,11 +161,37 @@ int removeValor(Lista *p_l, elem_t e){
 
 /* Inverte os elementos de uma lista */
 void inverte(Lista *p_l){
+	Lista *nova_lista;
+	No_lista *novo_no, *aux;
+	int elemento;
+
+	novo_no = (No_lista*) malloc(sizeof(No_lista));
+	inicLista(nova_lista);
+
+	aux = p_l->prox;
+	while(aux->prox != NULL){
+		removeFim(p_l, &elemento);
+		insereInicio(nova_lista, elemento);
+		aux = aux->prox;
+	}
 		
 }
 
 /* Remove todos os numeros da lista */
-void libera(Lista *p_l);
+void libera(Lista *p_l){
+	/*
+	 * // opção 1
+	 *	p_l->prox = NULL;
+	 */
+
+	// opção 2:
+	No_lista *aux;
+	aux = p_l->prox;
+	while(aux->prox != NULL){
+		free(aux);
+		aux = p_l->prox;
+	}
+}
 
 /* Exibe o conteudo da lista */
 void exibe(Lista *p_l){
