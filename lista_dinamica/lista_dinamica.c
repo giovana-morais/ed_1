@@ -78,18 +78,22 @@ int ordenada(Lista *p_l){
 
 /* Ordena a lista */
 void ordena(Lista *p_l){
-	int maximo = 0, i;
+	int maximo, i;
 	Lista lista_ordenada;
 	inicLista(&lista_ordenada);
 	
-	//while(!listaVazia(p_l)){
-	for(i = 0; i < 2; i++){
+	//while(p_l->prox != NULL){
+	for(i = 0; i < 10; i++){
 	//	printf("while\n");
 	// 1- procurando o máximo
+		maximo = 0;
 		acha_max(p_l, &maximo);
+		printf("maximo atualizado: %d\n", maximo);
+		printf("p_l antes da remoção\t");
+		exibe(p_l);
 	// 2- removendo os elementos e inserindo na lista nova
 		removeValor(p_l, maximo);
-		printf("p_l\t");
+		printf("\np_l depois da remoção\t");
 		exibe(p_l);
 		insereInicio(&lista_ordenada, maximo);	
 		printf("\nlista_nova\t");
