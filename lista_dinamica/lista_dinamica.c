@@ -78,12 +78,14 @@ int ordenada(Lista *p_l){
 
 /* Ordena a lista */
 void ordena(Lista *p_l){
-	int maximo, i;
+	int maximo, i, remove = 1;
 	Lista lista_ordenada;
 	inicLista(&lista_ordenada);
-	
-	//while(p_l->prox != NULL){
-	for(i = 0; i < 10; i++){
+/*	essa fç tá com problema que eu não sei resolver:
+ *	1 - a condição de parada: quando eu coloco como condição do while só o p_l->prox, dá problema com a variável "maximo"
+ */
+	while(p_l->prox != NULL){
+	//for(i = 0; i < 10; i++){
 	//	printf("while\n");
 	// 1- procurando o máximo
 		maximo = 0;
@@ -92,16 +94,12 @@ void ordena(Lista *p_l){
 		printf("p_l antes da remoção\t");
 		exibe(p_l);
 	// 2- removendo os elementos e inserindo na lista nova
-		removeValor(p_l, maximo);
-		printf("\np_l depois da remoção\t");
-		exibe(p_l);
+		remove = removeValor(p_l, maximo);
+		if(remove == 0)
+			break;
 		insereInicio(&lista_ordenada, maximo);	
-		printf("\nlista_nova\t");
-		exibe(&lista_ordenada);
-		printf("\n");
 	}	
 	// 3- p_l passa a ser a lista ordenada
-	// (esse passo é necessário?)
 	*p_l = lista_ordenada;	
 
 }
@@ -109,7 +107,7 @@ void ordena(Lista *p_l){
 void acha_max(Lista *p_l, int *maximo){
 	No_lista *aux;
 	aux = p_l->prox;
-	while(aux->prox != NULL){
+	while(aux != NULL){
 		if(aux->info > *maximo){
 			*maximo = aux->info;
 			printf("max = %d\n", *maximo);
@@ -156,6 +154,26 @@ int removeFim(Lista *p_l, elem_t *p_e){
 /* Remove o numero de valor e.
  *    Retorna 0 caso este numero não tenha sido encontrado */
 int removeValor(Lista *p_l, elem_t e){
+	No_lista *aux;
+	int removeu = 0;
+	aux = p_l->prox;
+	while(aux != NULL){
+		if(aux->info == e){
+			p_l->prox = aux->prox;
+			free(aux);
+			removeu = 1;
+			break;
+		} else {
+			p_l = p_l->prox;
+			aux = p_l->prox;
+		}
+	}
+
+	return removeu;
+}
+/* Remove o todas as ocorrências do valor e.
+ *    Retorna 0 caso este numero não tenha sido encontrado */
+int removeTodoValor(Lista *p_l, elem_t e){
 	No_lista *aux;
 	int removeu = 0;
 	aux = p_l->prox;
