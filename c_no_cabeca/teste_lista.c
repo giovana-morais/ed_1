@@ -2,13 +2,13 @@
 #include "lista_dinamica.h"
 
 int main(){
-	int num, opcao;
+	int num, opcao, maximo = 0;
 	Lista l;
 
 	inicLista(&l);
 	         
 	opcao = 1;  
-	while(opcao <= 10 && opcao > 0){
+	while(opcao <= 11 && opcao > 0){
 	       printf("\n 1 - insere um numero no inicio da lista");
 	       printf("\n 2 - insere um numero no fim da lista");
 	       printf("\n 3 - insere um numero de maneira ordenada");
@@ -19,6 +19,7 @@ int main(){
 	       printf("\n 8 - remove um valor determinado");
 	       printf("\n 9 - inverte");
 	       printf("\n 10 - exibe a lista");
+	       printf("\n 11 - acha o valor máximo da lista");
 	       printf("\n qualquer outro numero para sair");
 	       printf("\n\nEntre com uma das opcoes acima: ");
 	       scanf("%d", &opcao);
@@ -72,6 +73,9 @@ int main(){
 			case 10: 
 			       exibe(&l); 
 			       break;
+			case 11:
+			       	acha_max(&l, &maximo);
+				break;
 			}							   		exibe(&l);
 	     printf("\n\n");    
 	}    

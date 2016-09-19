@@ -1,3 +1,5 @@
+/* Lista dinâmica com nó cabeça */
+
 #include "lista_dinamica.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -78,20 +80,20 @@ int ordenada(Lista *p_l){
 
 /* Ordena a lista */
 void ordena(Lista *p_l){
-	int maximo, i, remove = 1;
+	/*
+	 *  esse aqui é um insertion sort meio bugado, né 
+	 *
+	 */
+
+/*
+	int maximo, remove = 1;
 	Lista lista_ordenada;
+
 	inicLista(&lista_ordenada);
-/*	essa fç tá com problema que eu não sei resolver:
- *	1 - a condição de parada: quando eu coloco como condição do while só o p_l->prox, dá problema com a variável "maximo"
- */
 	while(p_l->prox != NULL){
-	//for(i = 0; i < 10; i++){
-	//	printf("while\n");
 	// 1- procurando o máximo
 		maximo = 0;
 		acha_max(p_l, &maximo);
-		printf("maximo atualizado: %d\n", maximo);
-		printf("p_l antes da remoção\t");
 		exibe(p_l);
 	// 2- removendo os elementos e inserindo na lista nova
 		remove = removeValor(p_l, maximo);
@@ -101,7 +103,21 @@ void ordena(Lista *p_l){
 	}	
 	// 3- p_l passa a ser a lista ordenada
 	*p_l = lista_ordenada;	
+*/
+	/* esse aqui é um insertion sort menos bugado */
 
+	No_lista *desord, *aux, *novo;
+
+	desord = p_l->prox;
+	p_l->prox = NULL;
+
+	while(desord != NULL) {
+		novo = desord;
+		desord = desord->prox;
+		aux = p_l;
+
+		// terminar de pegar a implementação
+	}
 }
 
 void acha_max(Lista *p_l, int *maximo){
@@ -202,6 +218,7 @@ void inverte(Lista *p_l){
 	inicLista(nova_lista);
 
 	aux = p_l->prox;
+	//o último elemento tem que sempre apontar pra null pra isso rodar direito
 	while(aux != NULL){
 		removeFim(p_l, &elemento);
 		insereInicio(nova_lista, elemento);
