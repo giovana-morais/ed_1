@@ -4,11 +4,16 @@ typedef struct ll{
   struct ll *ant;
 } ll;
 
-void inicLista(ll **plista);
+typedef ll* Lista;
+
+// Funções não-recursivas
+void inicLista(Lista *plista);
+int listaVazia(Lista *plista);
+void exibe(Lista *plista);
 // Todas recursivas:
 void imprimirNormal(ll *lista);
 void imprimirReverso(ll *lista);
-void insereOrdenado(ll **plista, int num);
+void insereOrdenado(Lista *plista, int num);
 int tamanhodaLista(ll *lista);
 //Bonus opcional:
-void liberaRecursivo(ll **plista);
+void liberaRecursivo(Lista *plista);
