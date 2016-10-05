@@ -1,0 +1,5 @@
+O usuário entrará apenas com 2 números:
+- Um inteiro representando a semente a ser utilizada na função rand. ( srand(seed) )
+- O tamanho da pilha.
+
+*** OS NÚMEROS ALEATÓRIOS DEVEM SER LIMITADOS PARA O INTERVALO DE 1 ATÉ 3*TAMANHO_DA_PILHA ***

@@ -67,7 +67,7 @@ void geraListaAleatoria(int N, Lista *p_l);
 float calculaMedia(Lista *p_l);
 
 /* Mescla listas sem fazer malloc, apenas mexe nos ponteiros */
-void mesclaListas(Lista *lista_1, Lista *lista_2);
+No_lista* mesclaListas(Lista *lista_1, Lista *lista_2);
 
 /* Mescla listas criando uma terceira lista e inserindo ordenado */
 void criarListaMesclada(Lista *lista_1, Lista *lista_2, Lista *nova_lista);

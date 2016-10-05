@@ -1,0 +1,10 @@
+Legenda:
+u - push. (Empilha o próximo inteiro lido da entrada padrão)
+p - pop. (Desempilha um elemento da pilha e joga na saída padrão)
+f - fim. (Libera memória[Se precisar] e encerra o programa)
+
+  Para implementar essas funções utilize quantas filas achar necessário,
+respeitando as definições de fila e pilha.
+
+É opcional implementar nas duas versões, embora desejável.
+Caso não implemente em uma versão, deixe a pasta dessa VAZIA.

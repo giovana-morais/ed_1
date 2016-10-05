@@ -1,0 +1,10 @@
+Legenda:
+e - enqueue. - Enfileira o próximo inteiro lido da entrada padrão.
+d - dequeue. - Desenfileira um elemento da fila e joga na saída padrão.
+f - fim. - Libera memória (Se houver) e finaliza o programa.
+
+  Para implementar essas funções utilize quantas pilhas achar necessário,
+respeitando as definições de fila e pilha.
+
+É opcional implementar nas duas versões, embora desejável.
+Caso não implemente em uma versão, deixe a pasta VAZIA.

@@ -13,7 +13,7 @@
 #include "lista_cno.h"
 
 int main(){
-	Lista lista_1, lista_2, nova_lista;
+	Lista lista_1, lista_2, nova_lista, nova2;
 
 	inicLista(&lista_1);	
 	inicLista(&lista_2);	
@@ -21,14 +21,6 @@ int main(){
 	
 	leLista(&lista_1);
 	leLista(&lista_2);
-/*
-	printf("lista 1: ");
-	exibe(&lista_1);
-	printf("\n");
-	printf("lista 2: ");
-	exibe(&lista_2);
-	printf("\n");
-*/
 	criarListaMesclada(&lista_1, &lista_2, &nova_lista);
 	printf("nova lista (com malloc): ");
 	exibe(&nova_lista);

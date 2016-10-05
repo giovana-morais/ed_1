@@ -103,32 +103,6 @@ void ordena(Lista *p_l){
 		desord = aux;
 		if(aux != NULL)
 			aux = aux->prox;
-		
-		/*
-		if(ord->prox == NULL){
-			desord->prox = ord->prox;
-			ord->prox = desord;
-			desord = aux;
-			if(aux != NULL)
-				aux = aux->prox;
-				
-		} else { 
-			// inserindo em p_l
-			desord->prox = ord->prox;
-			ord->prox = desord;
-			printf("lista ordenada:\n");
-			exibe(&desord);	
-			*p_l = desord;
-			desord = aux;
-			if(aux != NULL)
-				aux = aux->prox;
-
-		}
-		
-		*/
-		
-//		printf("lista desordenada:\n");
-//		exibe(&desord);
 	}
 }
 
@@ -138,8 +112,7 @@ void ordena(Lista *p_l){
 	No_lista *aux;
 	
 	if (listaVazia(p_l))
-		return 0;
-
+		return 0; 
 	aux = p_l->prox;
 	*p_e = aux->info;
 	//p_l->prox = aux->prox;

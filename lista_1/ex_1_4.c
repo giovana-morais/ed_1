@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "lista_circular.h"
+#include "lista_circ.h"
 
 /*
  *
@@ -16,7 +16,11 @@ int main(){
 
 	inicLista(&lista);
 	scanf("%d", &N);
-
+/*
+	for(i = 0; i < N; i++)
+		insereFim(&lista, i);
+	exibe(&lista);
+*/
 	printf("lista:\n");	
 	geraListaAleatoria(N, &lista);
 	exibe(&lista);
@@ -24,11 +28,11 @@ int main(){
 	printf("lista inversa:\n");
 	inverte(&lista);
 	exibe(&lista);
-	
+/*	
 	printf("lista ordenada:\n");
 	ordena(&lista);
 	exibe(&lista);
-
+*/
 //	printf("media:\n");
 //	printf("%.2f\n", calculaMedia(&lista));
 	

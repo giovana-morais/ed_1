@@ -6,7 +6,6 @@
  * 	 - criar uma lista encadeada a partir de um vetor e seu tamanho
  * 	 - não entendi o item 5.5
  * 	 - mesclar duas listas, mantendo sua originalidade. tbm criar um vetor com os elementos.
- * 	 	não entendi nada disso aqui tbm
  */
 
 #include "lista_sno.h"

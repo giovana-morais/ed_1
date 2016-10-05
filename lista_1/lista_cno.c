@@ -236,63 +236,41 @@ float calculaMedia(Lista *p_l){
 	}
 }
 
-void mesclaListas(Lista *lista_1, Lista *lista_2){
-	No_lista *aux, *aux2, *aux3, *aux4;;
-
-/*	if(listaVazia(lista_1)){
-		lista_1 = lista_2;
+No_lista* mesclaListas(Lista *lista_1, Lista *lista_2){
+	No_lista *aux, *aux2, *aux3, *l3;
+	
+	if(listaVazia(lista_1)){
+		l3 = lista_1;
+		return l3;
 	} else if(listaVazia(lista_2)){
-		lista_2	= lista_1;
-	} else {
-		return;
+		l3 = lista_2;
+		return l3;
 	}
-*/
+
 	aux = lista_1->prox;
 	aux2 = lista_2->prox;
+	l3 = lista_1;
+	aux3 = l3;
 
-	if(aux2->prox != NULL)
-		aux3 = aux2->prox;
-	if(aux->prox != NULL)
-		aux4 = aux->prox;
-	
-	if(aux->info >= aux2->info){
-		lista_1->prox = aux2;
-	} 
-// arrumar pra quando
-// 	a) a primeira lista for maior que a primeira
-// 	b) o primeiro elemento da primeira lista for maior que da segunda
-// 	c) sei lá, pensar em outros casos
-//
-	while(aux != NULL && aux3 != NULL ){
-		if(aux->info >= aux2->info && aux->info <= aux3->info){
-			aux2->prox = aux;
-			aux2 = aux2->prox;
-			aux = aux->prox;
-			if(aux2->prox != NULL)
-				aux2->prox = aux3;
-			if(aux->prox != NULL)
-				aux4 = aux->prox;
-		} else if(aux->info < aux2->info){
-			aux->prox = aux2;
-			aux = aux4;
-			if(aux->prox != NULL)
-				aux4 = aux4->prox;
-		} else if(aux->info > aux2->info && aux->info > aux3->info ){ 
-			aux3->prox = aux;
-			aux = aux->prox;
-			aux2 = aux3;
-			aux3 = aux3->prox;	
-		} else {
-			aux2 = aux3;
+	while(aux != NULL && aux2 != NULL){
+		if(aux->info > aux2->info){
+			aux3->prox = aux2;
 			aux3 = aux3->prox;
+			aux2 = aux2->prox;
+		} else {
+			aux3->prox = aux;
+			aux3 = aux3->prox;
+			aux = aux->prox;
 		}
-		exibe(lista_1);	
-		printf("\n");
 	}
-	if(aux2 == NULL && aux != NULL){
-		printf("oi\n");
-		aux2->prox = aux;
-	}
+	
+	if(aux != NULL)
+		aux3->prox = aux;
+	
+	if(aux2 != NULL)
+		aux3->prox = aux2;
+
+	return l3;
 }
 
 void criarListaMesclada(Lista *lista_1, Lista *lista_2, Lista *nova_lista){

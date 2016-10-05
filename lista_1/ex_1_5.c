@@ -24,14 +24,14 @@ int main(){
 	
 	printf("lista inversa:\n");
 	inverte(&lista);
-//	exibe(&lista);
-/*	
+	exibe(&lista);
+
 	printf("lista ordenada:\n");
 	ordena(&lista);
 	exibe(&lista);
-*/
-//	printf("media:\n");
-//	printf("%.2f\n", calculaMedia(&lista));
+
+	printf("media:\n");
+	printf("%.2f\n", calculaMedia(&lista));
 	
 return 0;
 }

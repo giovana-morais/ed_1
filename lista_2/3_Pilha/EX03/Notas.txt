@@ -1,0 +1,13 @@
+Sobre o menu de entrada desse programa considere as seguintes opcões:
+a - Insere elemento em a.
+b - Insere elemento em b.
+c - Remove um elemento de a.
+d - Remove um elemento de b.
+p - imprime as 2 pilhas
+f - Encerra o programa e libera memória se houver
+
+Tome cuidado para não deixar uma pilha invadir o espaço de outra,
+ou remover algum elemento de uma pilha vazia!
+
+  Implemente usando primordialmente utilizando uma fila circular
+estática de tamanho 10.

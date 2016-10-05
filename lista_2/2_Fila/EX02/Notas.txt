@@ -1,0 +1,2 @@
+É opcional implementar nas duas versões, embora desejável.
+Caso não implemente em uma versão, deixe a pasta dessa VAZIA.

@@ -42,5 +42,5 @@ int main(){
 	printf("compara 1 e 2: %d\n", compara(&str1, &str2));
 	printf("compara 2 e 3: %d\n", compara(&str2, &str3));
 	printf("compara 2 e 4: %d\n", compara(&str2, &str4));
-
+	printf("compara 4 e 2: %d\n", compara(&str4, &str2));
 }

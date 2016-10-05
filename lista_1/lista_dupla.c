@@ -53,46 +53,29 @@ void insereFim(Lista *lista, elem_t e){
 }
 
 void inverte(Lista *lista){
-	No_lista *aux, *inverte;
+	No_lista *aux, *aux2;
 
-	if(listaVazia(lista) || (*lista)->prox == NULL)
+	aux = *lista;
+	if(listaVazia(lista) || aux->prox == NULL)
 		return;
-	if((*lista)->ant == NULL)	
-		printf("oi\n");
-	inverte = (*lista);
-	aux = (*lista)->prox;
 
-	// guarda o começo da lista pra exibição
-	while(inverte->prox != NULL){
-//		printf("antes da troca\n");
-//		printf("*lista = %d\n", inverte->info);
-//		printf("aux->info = %d\n", aux->info);
-		inverte->prox = aux->prox;
-		aux->prox = inverte;
-		aux->ant = inverte->ant;
-		inverte->ant = aux;
-		if(inverte->prox != NULL)
-			inverte->prox->ant = inverte;
-
-		if(aux->ant == NULL){
-			printf("o if tá certo\n");
-			*lista = aux;			
-		} else {
-			printf("else\n");
-			inverte->ant = aux;
-			aux->ant->prox = aux;
-		}
-		if(inverte->prox != NULL)
-			aux = inverte->prox;
-//		printf("depois da troca\n");
-//		printf("inverte = %d\n", inverte->info);
-//		printf("lista = %d\n", (*lista)->info);
-//		printf("aux->info = %d\n", aux->info);
-		exibe(lista);
+	aux2 = aux->prox;
+	
+	while(aux2->prox != NULL){
+		aux->prox = aux->ant;
+		aux->ant = aux2;
+		aux = aux2;
+		aux2 = aux2->prox;
 	}
-
+	
+	aux->prox = aux->ant;
+	aux->ant = aux2;
+	aux2->prox = aux;
+	aux2->ant = NULL;
+	
+	*lista = aux2;
 }
-
+	
 /* Insere números aleatórios na lista */
 void geraListaAleatoria(int N, Lista *lista){
 	int i, num;
@@ -115,4 +98,65 @@ void exibe(Lista *lista){
 		aux = aux->prox;
 	}
 	printf("\n");
+}
+
+void ordena(Lista *lista){
+	No_lista *aux, *aux2, *desord, *ord;
+
+	if(listaVazia(lista) || (*lista)->prox == NULL)
+		return;
+
+	desord = (*lista)->prox;
+	aux = desord->prox;
+	desord->ant = NULL;
+	(*lista)->prox = NULL;
+
+	// tem algo dando errado, mas eu quero é que se foda
+	while(desord != NULL){
+		ord = *lista;
+		if(ord->info > desord->info){
+			// arrumar aqui
+			desord->prox = ord;
+			if(aux != NULL)
+				aux->ant = desord->ant;
+			desord->ant = ord->ant;
+			ord->ant = desord;
+			*lista = desord;
+		} else {
+			while(ord->prox != NULL && desord->info > ord->prox->info){
+				ord = ord->prox;
+			}
+			desord->prox = ord->prox;
+			ord->prox = desord;
+			aux->ant = desord->ant;
+			desord->ant = ord->prox->ant;
+			ord->prox->ant = desord;
+		}
+		desord = aux;
+		if(aux != NULL)
+			aux = aux->prox;
+		
+	}	
+		
+}
+
+
+float calculaMedia(Lista *lista){
+	int soma = 1;
+	float media;
+	No_lista *aux;
+
+	if(listaVazia(lista))
+		return 0.0;
+
+	aux = (*lista)->prox;
+	media = (*lista)->info;
+	while(aux != NULL){
+		media += aux->info;
+		aux = aux->prox;
+		soma++;
+	}
+	
+	media /= soma;
+	return media;
 }

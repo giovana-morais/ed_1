@@ -79,13 +79,13 @@ int compara(Str *lista_1, Str *lista_2){
 	
 	aux = *lista_1;
 	while(aux != NULL){
-		cont += aux->info;
+		cont -= aux->info;
 		aux = aux->prox;
 	}	
 
 	aux = *lista_2;
 	while(aux != NULL){
-		cont -= aux->info;
+		cont += aux->info;
 		aux = aux->prox;
 	}
 	
