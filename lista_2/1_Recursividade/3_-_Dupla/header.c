@@ -22,38 +22,23 @@ void imprimirNormal(ll *lista){
 void insereOrdenado(Lista *plista, int num){
 	ll *novo, *aux;
 	aux = *plista;
-	if(listaVazia(&aux) || aux->prox == NULL || aux->prox->n > num){
+	if(listaVazia(plista) || aux->n > num){
 		novo = (ll*) malloc(sizeof(ll));
-		novo->n = num;
-		if(listaVazia(&aux)){
-			printf("lista vazia\n");
-			*plista = novo;
-			novo->prox = NULL;
-			novo->ant = NULL;
-			return;
-		} else if(aux->ant == NULL){
-			printf("insere no inicio\n");
-			novo->ant = NULL;
-			novo->prox = *plista;
-			aux->ant = novo;
-			*plista = novo;
-			return;
-		} else if(aux->prox == NULL){
-			printf("insere no fim\n");
-			novo->prox = aux->prox;
-			aux->prox = novo;
-			novo->ant = aux;
-			return;
-		} else {
-			printf("qualquer outro caso\n");
-			novo->prox = aux->prox;
-			aux->prox->ant = novo;
-			novo->ant = aux;
-			aux->prox = novo;
-		}
-	} else {
-		insereOrdenado(&aux->prox, num);	
-	}	
+		novo->n  = num;
+		novo->ant = NULL;
+		novo->prox = aux;
+		*plista = novo;
+	} else if (aux->prox == NULL || aux->prox->n > num) {
+		novo = (ll*) malloc(sizeof(ll));
+		novo->n  = num;
+		novo->prox = aux->prox;
+		novo->ant = aux;
+		if(aux->prox != NULL)
+			novo->prox->ant = novo;
+		aux->prox = novo;
+	} else 
+		insereOrdenado(&aux->prox, num);
+
 }
 void exibe(Lista *p_l){
 	while((*p_l) != NULL){

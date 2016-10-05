@@ -20,10 +20,9 @@ int main(){
 	Lista lista;
 	inicLista(&lista);
 	char op;
-	
+// montar o switch depois	
 	insereOrdenado(&lista, 7);
 	insereOrdenado(&lista, 3);
-	insereOrdenado(&lista, 2);	
 	insereOrdenado(&lista, 5);	
 	insereOrdenado(&lista, 1);
 	insereOrdenado(&lista, 2);
