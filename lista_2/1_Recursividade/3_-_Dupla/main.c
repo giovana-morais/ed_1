@@ -20,12 +20,34 @@ int main(){
 	Lista lista;
 	inicLista(&lista);
 	char op;
-// montar o switch depois	
-	insereOrdenado(&lista, 7);
-	insereOrdenado(&lista, 3);
-	insereOrdenado(&lista, 5);	
-	insereOrdenado(&lista, 1);
-	insereOrdenado(&lista, 2);
-	exibe(&lista);
-//	imprimirNormal(lista);
+	int num;
+
+	do{
+		__fpurge(stdin);
+		scanf("%c", &op);
+		switch(op){
+			case 'i':
+				scanf("%d", &num);
+				insereOrdenado(&lista, num);
+				break;
+			case 'p':
+				scanf("%d", &num);
+				if(num == 1)
+					imprimirNormal(lista);
+				else if(num == 2)
+					imprimirReverso(lista);
+				else
+					printf("opção inválida\n");
+				break;
+			case 'c':
+			       printf("tamanho da lista: %d\n", tamanhodaLista(lista));
+			       break;
+			case 's':
+			       break;
+			default:
+			       printf("opção inválida\n");
+			       break;
+		}
+	} while(op != 's');
+	liberaRecursivo(&lista);
 }

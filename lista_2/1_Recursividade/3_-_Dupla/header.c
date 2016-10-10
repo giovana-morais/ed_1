@@ -13,12 +13,19 @@ int listaVazia(Lista *plista){
 }
 
 void imprimirNormal(ll *lista){
-	if(lista->ant == lista->prox)
-		printf("%d ", lista->n);
+	printf("%d ", lista->n);
+	if(lista->prox == NULL)
+		printf("\n");
 	else
-		imprimirNormal(lista->ant);
+		imprimirNormal(lista->prox);
+
 }
 
+void imprimirReverso(ll *lista){
+	if(lista->prox != NULL)
+		imprimirReverso(lista->prox);
+	printf("%d ", lista->n);
+}
 void insereOrdenado(Lista *plista, int num){
 	ll *novo, *aux;
 	aux = *plista;
@@ -48,3 +55,21 @@ void exibe(Lista *p_l){
 	printf("\n");
 }
 
+int tamanhodaLista(ll *lista){
+	if(lista->prox == NULL)
+		return 1;	
+	else {
+		return	tamanhodaLista(lista->prox) + 1;
+	}
+
+}
+
+void liberaRecursivo(Lista *plista){
+	ll *aux;
+	aux = *plista;	
+
+	if(aux->prox == NULL)
+		free(aux);
+	else
+		liberaRecursivo(&aux->prox);
+}

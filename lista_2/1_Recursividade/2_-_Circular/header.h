@@ -3,11 +3,12 @@ typedef struct ll{
   struct ll *prox;
 } ll;
 
-void inicLista(ll **plista);
+typedef ll* Lista;
+void inicLista(Lista *plista);
 // Todas recursivas:
 void imprimirNormal(ll *lista, ll *comeco);
 void imprimirReverso(ll *lista, ll *comeco);
-void insereOrdenado(ll **plista, ll *comeco, int num);
+void insereOrdenado(Lista *plista, ll *comeco, int num);
 int tamanhodaLista(ll *lista, ll *comeco);
 //Bonus opcional:
-void liberaRecursivo(ll **plista, ll *comeco);
+void liberaRecursivo(Lista *plista, ll *comeco);
