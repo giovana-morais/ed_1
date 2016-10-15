@@ -5,6 +5,7 @@ typedef struct ll{
 
 typedef ll* Lista;
 void inicLista(Lista *plista);
+int listaVazia(Lista *plista);
 // Todas recursivas:
 void imprimirNormal(ll *lista, ll *comeco);
 void imprimirReverso(ll *lista, ll *comeco);
