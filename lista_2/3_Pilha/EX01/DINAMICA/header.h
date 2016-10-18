@@ -11,12 +11,14 @@ int pilha_vazia(Pilha *pilha);
 
 void empilha(Pilha *pilha, int num);
 
-void gera_sequencia(Pilha *pilha, int N);
-
-void desempilha(Pilha *pilha);
-
 void imprime_original(Pilha *pilha);
 
-void imprime_reversa(Pilha *pilha);
+int desempilha(Pilha *pilha);
 
-void separa(Pilha *pilha, Pilha *par, Pilha *impar);
+void muda_ordem(Pilha *pilha, Pilha *aux);
+
+void exibe(Pilha *pilha);
+
+void separa(Pilha *pilha, Pilha *p1, Pilha *p2);
+
+void junta(Pilha *pilha, Pilha *p1, Pilha *p2);

@@ -13,30 +13,36 @@ int listaVazia(Lista *plista){
 }
 void imprimirNormal(ll *lista, ll *comeco){
 	int flag;
-/*
-	if(lista == comeco)
-		printf("lista == comeco\n");
-	else
-		printf("lista != comeco\n");
-
-	if(flag == 0)
-		printf("flag == 0\n");
-	else
-		printf("flag != 0\n");
-*/
-	if(lista == comeco && flag == 0){
-		flag = 1;
-		printf("%d ", lista->n);
-		imprimirNormal(lista->prox, comeco);
-	} else if(flag != 0 && lista != comeco) {
-		printf("%d ", lista->n);
-		imprimirNormal(lista->prox, comeco);
-	} else {
-		/*printf("socorro\n");
-		printf("%d ", lista->n);*/
-		return;
-	}
 	
+	if(listaVazia(&lista))
+		return;
+	if(lista == comeco){
+		printf("%d ", comeco->n);
+	} else {
+		printf("%d ", comeco->n);
+		imprimirNormal(lista, comeco->prox);
+	}
+
+}
+
+void imprimirReverso(ll *lista, ll *comeco){
+	if(listaVazia(&lista))
+		return;
+	else if(lista == comeco)
+		printf("%d ", comeco->n);
+	else {
+		imprimirReverso(lista, comeco->prox);
+		printf("%d ", comeco->n);
+	}
+}
+
+int tamanhodaLista(ll *lista, ll *comeco){
+	if(listaVazia(&lista))
+		return 0;
+	else if(lista == comeco)
+		return 1;
+	else
+		return tamanhodaLista(lista, comeco->prox) + 1;
 }
 
 void insereOrdenado(Lista *plista, ll *comeco, int num){
@@ -58,14 +64,20 @@ void insereOrdenado(Lista *plista, ll *comeco, int num){
 		novo->prox = (*plista)->prox;
 		(*plista)->prox = novo;
 		return;
-	} else if((*plista)->prox == comeco && comeco->n < num){
+	} else if((*plista)->n < num){
 		novo = (ll*) malloc(sizeof(novo));
 		novo->n = num;
 		novo->prox = comeco;
 		(*plista)->prox = novo;
+		*plista = novo;
 		
+	} else if(comeco->prox->n > num){
+		novo = (ll*) malloc(sizeof(novo));
+		novo->n = num;
+		novo->prox = comeco->prox;
+		comeco->prox = novo;	
 	} else {
-		insereOrdenado(plista, comeco, num);
+		insereOrdenado(plista, comeco->prox, num);
 	}
 
 //	printf("teste insereOrdenado\n");

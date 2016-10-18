@@ -1,8 +1,6 @@
-// Irei tirar 10 em ED1...
 #include <stdio.h>
 #include <stdlib.h>
 #include "header.h"
-#define MAX 1001
 
 int main(){
 	char c;
@@ -22,9 +20,8 @@ int main(){
 				if(pilha_vazia(&pilha)){
 					fputs("incorrect\n", stdout);
 					flag = 1;
-					break;
-				}
-				desempilha(&pilha);
+				} else 
+					desempilha(&pilha);
 			}
 			if(c == EOF){
 				flag = 1;
@@ -34,7 +31,6 @@ int main(){
 		}
 			
 		if(c == EOF){
-			flag = 1;
 			break;
 		}
 
@@ -42,9 +38,6 @@ int main(){
 			fputs("incorrect\n", stdout);
 		else if(pilha_vazia(&pilha) && flag == 0)
 			fputs("correct\n", stdout);
-			
-		
-		
 	}
 	
 
