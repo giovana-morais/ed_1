@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "arvore.h"
 
 No *arv(elem_t c, No* esq, No* dir){
@@ -50,9 +50,17 @@ void largura(No* p){
 }
 
 void libera(Arvore* p){
+	if(p == NULL)
+		free(&p);
+	else {
+		libera(&(*p)->dir);
+		libera(&(*p)->esq);
+	}
 }
 
+
 No* copia(No* p){
+	
 }
 
 int altura (No* p){
@@ -68,7 +76,17 @@ int altura (No* p){
 }
 
 int nNos (No* p){
-
+	int e, d;
+	if(p == NULL){
+		e = 0;
+		d = 0;
+		return 1;
+	}
+	printf("1\ndir = %d, esq = %d\n", d, e);
+	e = nNos(p->esq) + 1;
+	d = nNos(p->dir) + 1; 
+	printf("2\ndir = %d, esq = %d\n", d, e);
+	return d + e;
 }
 
 int iguais(No* arv1, No* arv2){

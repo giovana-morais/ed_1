@@ -14,11 +14,12 @@ No* monta_arv_expr (char s[], int *pos);
 int main() {
   Arvore a, b;
   int i;
-/* Cria a árvore           a
+/* Cria a árvore         
+* 			   a
                           / \
-						 b   c
-					 	    /
-					  	   d
+			 b   c
+			    /
+			   d
           
 */
   a = arv('a',arv('b',NULL,NULL),arv('c',arv('d',NULL,NULL),NULL));
